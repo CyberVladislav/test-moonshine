@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\MessageResource;
 use App\MoonShine\Resources\UserResource;
 use Illuminate\Support\ServiceProvider;
 use MoonShine\MoonShine;
@@ -25,6 +26,7 @@ class MoonShineServiceProvider extends ServiceProvider
             ])->translatable(),
 
             MenuItem::make('Users', new UserResource()),
+            MenuItem::make('Messages', new MessageResource()),
 
             MenuItem::make('Documentation', 'https://laravel.com')
                 ->badge(fn() => 'Check'),

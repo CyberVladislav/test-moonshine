@@ -12,6 +12,7 @@ return new class () extends Migration {
             $table->string('chat_id');
             $table->string('name')->nullable();
 
+            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('telegraph_bot_id')->constrained('telegraph_bots')->cascadeOnDelete();
             $table->timestamps();
 

@@ -3,31 +3,30 @@
 namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use App\Models\Message;
 
-use MoonShine\Fields\HasMany;
+use MoonShine\Fields\BelongsTo;
+use MoonShine\Fields\File;
 use MoonShine\Fields\Text;
+use MoonShine\Fields\Textarea;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
 
-class UserResource extends Resource
+class MessageResource extends Resource
 {
-	public static string $model = User::class;
+	public static string $model = Message::class;
 
-	public static string $title = 'Users';
-
-    public static array $with = ['messages'];
+	public static string $title = 'Messages';
 
 	public function fields(): array
 	{
 		return [
 		    ID::make()->sortable(),
-            Text::make('First name', 'first_name'),
-            Text::make('Last name', 'last_name')->hideOnIndex(),
-            Text::make('Username', 'username'),
-
-            HasMany::make('Messages')->hideOnIndex(),
+            Textarea::make('Message'),
+            Text::make('Message_id'),
+            BelongsTo::make('User'),
+            File::make('File')->dir('documents'),
         ];
 	}
 
